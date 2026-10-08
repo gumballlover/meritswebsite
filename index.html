@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account & Data Deletion | Merit (Time Bank)</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #080C14;
+      --bg-gradient-start: #07172E;
+      --bg-gradient-end: #000000;
+      --card-bg: rgba(15, 22, 38, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(56, 189, 248, 0.25);
+      --text-primary: #FFFFFF;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --accent-cyan: #00D2FF;
+      --accent-green: #00E676;
+      --accent-blue: #38BDF8;
+      --accent-amber: #F59E0B;
+      --accent-danger: #EF4444;
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(7, 23, 46, 0.8) 0%, rgba(8, 12, 20, 0.95) 50%, #000000 100%),
+        radial-gradient(circle at 85% 20%, rgba(0, 210, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 15% 45%, rgba(0, 230, 118, 0.04) 0%, transparent 40%);
+      color: var(--text-primary);
+      font-family: var(--font-family);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 80px 20px;
+    }
+
+    /* Ambient top glow */
+    .glow-header-bar {
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, var(--accent-green), var(--accent-cyan), transparent);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    /* Navbar */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0 36px 0;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 36px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 210, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      object-fit: cover;
+      background: #020610;
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0, 230, 118, 0.1);
+      border: 1px solid rgba(0, 230, 118, 0.25);
+      color: var(--accent-green);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .header-badge::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+
+    /* Hero section */
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px 0;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      margin-bottom: 14px;
+      line-height: 1.2;
+      background: linear-gradient(180deg, #FFFFFF 30%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .app-meta-pill {
+      margin-top: 18px;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .meta-chip {
+      background: rgba(15, 22, 38, 0.9);
+      border: 1px solid var(--card-border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .meta-chip strong {
+      color: var(--text-primary);
+    }
+
+    /* Tab switcher */
+    .tab-nav {
+      display: flex;
+      background: rgba(15, 22, 38, 0.8);
+      border: 1px solid var(--card-border);
+      padding: 5px;
+      border-radius: 14px;
+      margin-bottom: 30px;
+      gap: 6px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+      color: var(--text-primary);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .tab-btn.active.full-del {
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #FF8080;
+    }
+
+    .tab-btn.active.partial-del {
+      border-color: rgba(0, 210, 255, 0.4);
+      color: var(--accent-cyan);
+    }
+
+    .tab-btn.active.in-app {
+      border-color: rgba(0, 230, 118, 0.4);
+      color: var(--accent-green);
+    }
+
+    /* Content Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Steps list */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: rgba(8, 12, 20, 0.6);
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      color: #000;
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-num.danger {
+      background: linear-gradient(135deg, #EF4444, #F59E0B);
+      color: #FFF;
+    }
+
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Interactive Form */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(8, 12, 20, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.15);
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .checkbox-tile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: rgba(8, 12, 20, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+
+    .checkbox-tile:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(15, 22, 38, 0.8);
+    }
+
+    .checkbox-tile input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    .checkbox-tile span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      color: #020610;
+      box-shadow: 0 4px 18px rgba(0, 210, 255, 0.25);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(0, 210, 255, 0.35);
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #EF4444, #DC2626);
+      color: #FFF;
+      box-shadow: 0 4px 18px rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-danger:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Data Transparency Table */
+    .data-table-container {
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(8, 12, 20, 0.9);
+      padding: 14px 16px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-primary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge-status {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-deleted {
+      background: rgba(239, 68, 68, 0.15);
+      color: #EF4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .badge-local {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .badge-retained {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent-amber);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    /* Callout notice */
+    .callout {
+      padding: 16px 20px;
+      border-radius: 14px;
+      background: rgba(14, 165, 233, 0.08);
+      border: 1px solid rgba(14, 165, 233, 0.25);
+      margin: 20px 0;
+      font-size: 13px;
+      color: #BAE6FD;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .callout.warning {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.25);
+      color: #FDE68A;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #020610;
+      color: #FFF;
+      padding: 14px 22px;
+      border-radius: 12px;
+      border: 1px solid var(--accent-cyan);
+      box-shadow: 0 10px 30px rgba(0, 210, 255, 0.3);
+      font-size: 14px;
+      font-weight: 600;
+      display: none;
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 28px;
+      }
+      .tab-nav {
+        flex-direction: column;
+      }
+      .card {
+        padding: 20px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-header-bar"></div>
+
+  <div class="container">
+    <!-- Navbar -->
+    <header>
+      <a href="#" class="brand-group">
+        <img src="icon.png" alt="Merit Icon" class="brand-logo" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <h1>Merit</h1>
+          <span>Screen Time Bank &bull; com.merit.addictions</span>
+        </div>
+      </a>
+      <div class="header-badge">Google Play Data Safety Certified</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-eyebrow">Privacy & Account Governance</div>
+      <h2 class="hero-title">Account & Data Deletion Portal</h2>
+      <p class="hero-subtitle">
+        We respect your sovereignty over your personal data. In compliance with Google Play Store policies and international data protection laws (GDPR & CCPA), you can delete your entire account or erase specific activity data at any time.
+      </p>
+
+      <div class="app-meta-pill">
+        <div class="meta-chip">App: <strong>Merit (Time Bank)</strong></div>
+        <div class="meta-chip">Package: <strong>com.merit.addictions</strong></div>
+        <div class="meta-chip">Developer: <strong>Trojan Mark / Merit Team</strong></div>
+        <div class="meta-chip">Support Email: <strong>ngenzsupport@gmail.com</strong></div>
+      </div>
+    </section>
+
+    <!-- Tab navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active full-del" onclick="switchTab('full')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        1. Delete Full Account & Data
+      </button>
+      <button class="tab-btn partial-del" onclick="switchTab('partial')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        2. Delete Specific Data Only
+      </button>
+      <button class="tab-btn in-app" onclick="switchTab('inapp')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+        3. In-App Instant Deletion
+      </button>
+    </div>
+
+    <!-- TAB 1: FULL ACCOUNT DELETION -->
+    <div id="tab-full" class="tab-content">
+      <div class="card">
+        <h3 class="card-title">
+          <span style="color: var(--accent-danger);">●</span>
+          Request Full Account & Associated Data Deletion
+        </h3>
+        <p class="card-desc">
+          This permanently wipes your Merit user profile, authentication credentials (Firebase / Google OAuth), and all synchronized cloud records.
+        </p>
+
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num danger">1</div>
+            <div class="step-content">
+              <h4>Submit Your Associated Google / Account Email</h4>
+              <p>Provide the exact email address linked to your Merit profile so our systems can locate your Cloud Firestore database records.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num danger">2</div>
+            <div class="step-content">
+              <h4>Automated Identity Verification & Processing</h4>
+              <p>Our team verifies request authenticity. Account deletion initiates immediately upon confirmation.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num danger">3</div>
+            <div class="step-content">
+              <h4>Permanent Purge Within 30 Days</h4>
+              <p>Your authentication credentials and all cloud activity records are completely erased from Firebase servers. Local caches are cleared upon uninstall.</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="fullDeletionForm" onsubmit="handleFormSubmit(event, 'full')">
+          <div class="form-group">
+            <label for="fullEmail">Google Account / Email Address *</label>
+            <input type="email" id="fullEmail" placeholder="your-email@gmail.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="fullName">Account Display Name (Optional)</label>
+            <input type="text" id="fullName" placeholder="e.g. Trojan Mark">
+          </div>
+
+          <div class="form-group">
+            <label for="fullReason">Reason for Deletion (Optional)</label>
+            <textarea id="fullReason" rows="3" placeholder="Let us know why you are deleting your account (e.g. no longer using the app, privacy preference)..."></textarea>
+          </div>
+
+          <div class="callout warning">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <div>
+              <strong>Irreversible Action:</strong> Full account deletion removes your earned minutes, current streaks, leaderboard rankings, and cloud recovery keys. This action cannot be undone.
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-danger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              Submit Account Deletion Request
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="copyTemplate('full')">
+              Copy Email Template
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB 2: SPECIFIC DATA DELETION -->
+    <div id="tab-partial" class="tab-content" style="display:none;">
+      <div class="card">
+        <h3 class="card-title">
+          <span style="color: var(--accent-cyan);">●</span>
+          Request Specific Data Deletion (Keep Account Active)
+        </h3>
+        <p class="card-desc">
+          Google Play allows users to request the removal of specific categories of user data without losing access to their account or subscription entitlements. Select the exact metrics you wish to purge below.
+        </p>
+
+        <form id="partialDeletionForm" onsubmit="handleFormSubmit(event, 'partial')">
+          <div class="form-group">
+            <label for="partialEmail">Associated Account Email *</label>
+            <input type="email" id="partialEmail" placeholder="your-email@gmail.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>Select Data Categories to Erase *</label>
+            <div class="checkbox-grid">
+              <label class="checkbox-tile">
+                <input type="checkbox" name="dataType" value="Workouts & Calisthenics Logs">
+                <span>Workout History (Planks, Walks, Cardio, Cycling)</span>
+              </label>
+              <label class="checkbox-tile">
+                <input type="checkbox" name="dataType" value="Smartwatch & Step Sync Data">
+                <span>Health Connect & Smartwatch Step Counts</span>
+              </label>
+              <label class="checkbox-tile">
+                <input type="checkbox" name="dataType" value="Screen Time & Daily App Usages">
+                <span>App Usage Logs & Mined Credit Balances</span>
+              </label>
+              <label class="checkbox-tile">
+                <input type="checkbox" name="dataType" value="Streaks & Milestone Records">
+                <span>Streak Counter & Recovery Freeze Logs</span>
+              </label>
+              <label class="checkbox-tile">
+                <input type="checkbox" name="dataType" value="Location Lock Check-ins">
+                <span>Geofence & Location-Based Task History</span>
+              </label>
+              <label class="checkbox-tile">
+                <input type="checkbox" name="dataType" value="Leaderboard Public Display Profile">
+                <span>Public Leaderboard Display Name & Rank</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="partialNotes">Additional Instructions (Optional)</label>
+            <textarea id="partialNotes" rows="3" placeholder="e.g. Please reset all workout distance metrics logged before October 2026..."></textarea>
+          </div>
+
+          <div class="callout">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <div>
+              <strong>Account Continuity:</strong> Your core login and active Merit Pro subscription status will remain fully functional while the chosen historical data records are purged from Cloud Firestore.
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              Submit Specific Data Deletion Request
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="copyTemplate('partial')">
+              Copy Email Template
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB 3: IN-APP INSTANT DELETION GUIDE -->
+    <div id="tab-inapp" class="tab-content" style="display:none;">
+      <div class="card">
+        <h3 class="card-title">
+          <span style="color: var(--accent-green);">●</span>
+          Instant In-App Deletion Steps (Fastest)
+        </h3>
+        <p class="card-desc">
+          If you currently have the Merit mobile app installed on your Android device, you can trigger instant local and remote deletion directly from your device without waiting for manual support review:
+        </p>
+
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Open Merit & Navigate to Settings</h4>
+              <p>Launch the app and tap the <strong>Settings</strong> icon (gear tab) on the far right of the liquid glass navigation bar.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Locate the Account & Data Section</h4>
+              <p>Scroll down to the <strong>Account & Security</strong> card displaying your authenticated Google account.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Select "Delete Account" or "Wipe Data"</h4>
+              <p>Tap <strong>Delete Account & Cloud Data</strong> to immediately remove your Firestore record and revoke Google OAuth tokens.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Clear Local App Storage</h4>
+              <p>To wipe on-device usage caches, open <strong>Android Settings &rarr; Apps &rarr; Merit &rarr; Storage & Cache &rarr; Clear Storage</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA RETENTION & SECURITY TRANSPARENCY SECTION -->
+    <div class="card">
+      <h3 class="card-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-blue)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Data Retention, Deletion Scope & Legal Disclosures
+      </h3>
+      <p class="card-desc">
+        Under Google Play's User Data policy, the following table details each data category, whether it is deleted, kept locally, or retained for legal compliance:
+      </p>
+
+      <div class="data-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Where It Lives</th>
+              <th>Upon Deletion Request</th>
+              <th>Retention Period</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Account Identity & Credentials</strong><br><small>Email, Google Display Name, Firebase UID</small></td>
+              <td>Google Firebase Auth</td>
+              <td><span class="badge-status badge-deleted">Permanently Deleted</span></td>
+              <td>Erased within 30 days</td>
+            </tr>
+            <tr>
+              <td><strong>Cloud Activity Records</strong><br><small>Daily mined minutes, workout distance, streaks</small></td>
+              <td>Cloud Firestore (`users/{uid}`)</td>
+              <td><span class="badge-status badge-deleted">Permanently Deleted</span></td>
+              <td>Erased within 30 days</td>
+            </tr>
+            <tr>
+              <td><strong>On-Device Screen Time & Blocks</strong><br><small>UsageStats, app time limits, restricted package list</small></td>
+              <td>Device Local Storage only</td>
+              <td><span class="badge-status badge-local">Wiped Locally</span></td>
+              <td>Erased on uninstall / cache clear. Never sent to cloud.</td>
+            </tr>
+            <tr>
+              <td><strong>Camera & Form Landmark Feeds</strong><br><small>Pose detection joints during plank workouts</small></td>
+              <td>Transient Device RAM only</td>
+              <td><span class="badge-status badge-local">Zero Cloud Storage</span></td>
+              <td>Processed in real-time RAM and discarded instantly. Never recorded.</td>
+            </tr>
+            <tr>
+              <td><strong>Google Play In-App Purchase Receipts</strong><br><small>Pro subscription token & transaction order ID</small></td>
+              <td>Google Play Billing & Merchant Records</td>
+              <td><span class="badge-status badge-retained">Retained (Statutory)</span></td>
+              <td>Retained as required by law for accounting, tax, and anti-fraud purposes. Disconnected from user profile.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout" style="margin-top: 20px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+        <div>
+          <strong>Processing Turnaround:</strong> Direct email deletion requests are reviewed and acknowledged within <strong>48 to 72 business hours</strong>, with full cryptographic purge from all production backups finalized within <strong>30 calendar days</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact & Direct Support -->
+    <div class="card" style="text-align: center;">
+      <h3 class="card-title" style="justify-content: center;">Need Direct Assistance?</h3>
+      <p class="card-desc" style="max-width: 540px; margin: 0 auto 20px auto;">
+        You can also send a deletion or privacy request directly from your personal email client to our dedicated data compliance desk:
+      </p>
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <a href="mailto:ngenzsupport@gmail.com?subject=Merit%20Data%20Deletion%20Request%20-%20com.merit.addictions" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          Email: ngenzsupport@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 Merit (Time Bank). All rights reserved.</p>
+      <p style="margin-top: 6px;">
+        Package: <code>com.merit.addictions</code> &bull; Built in compliance with Google Play Store User Data &amp; Data Safety policies.
+      </p>
+    </footer>
+  </div>
+
+  <div id="toast">Copied to clipboard!</div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+      if (tabId === 'full') {
+        document.getElementById('tab-full').style.display = 'block';
+        document.querySelector('.tab-btn.full-del').classList.add('active');
+        window.location.hash = 'delete-account';
+      } else if (tabId === 'partial') {
+        document.getElementById('tab-partial').style.display = 'block';
+        document.querySelector('.tab-btn.partial-del').classList.add('active');
+        window.location.hash = 'delete-data';
+      } else if (tabId === 'inapp') {
+        document.getElementById('tab-inapp').style.display = 'block';
+        document.querySelector('.tab-btn.in-app').classList.add('active');
+        window.location.hash = 'in-app-guide';
+      }
+    }
+
+    // Auto switch based on URL hash (great for Google Play Console separate links!)
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('delete-data') || hash.includes('data')) {
+        switchTab('partial');
+      } else if (hash.includes('in-app') || hash.includes('guide')) {
+        switchTab('inapp');
+      } else {
+        switchTab('full');
+      }
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3500);
+    }
+
+    function handleFormSubmit(e, type) {
+      e.preventDefault();
+      let subject = '';
+      let body = '';
+
+      if (type === 'full') {
+        const email = document.getElementById('fullEmail').value.trim();
+        const name = document.getElementById('fullName').value.trim();
+        const reason = document.getElementById('fullReason').value.trim();
+
+        subject = encodeURIComponent(`[ACCOUNT DELETION REQUEST] Merit App - ${email}`);
+        body = encodeURIComponent(
+`MERIT APP - FULL ACCOUNT & DATA DELETION REQUEST
+
+Application: Merit (Time Bank)
+Package Name: com.merit.addictions
+Request Date: ${new Date().toISOString()}
+
+User Account Email: ${email}
+User Display Name: ${name || 'N/A'}
+
+Requested Action: 
+- Permanently delete my Firebase Authentication profile.
+- Erase all associated Cloud Firestore records under users/{uid}.
+- Remove all streak records, workout logs, mined credit history, and public leaderboard listings.
+
+Reason / Notes: 
+${reason || 'Standard account deletion requested via web portal.'}
+
+I confirm that I understand this deletion is permanent and cannot be undone.`
+        );
+      } else {
+        const email = document.getElementById('partialEmail').value.trim();
+        const notes = document.getElementById('partialNotes').value.trim();
+        const selected = Array.from(document.querySelectorAll('input[name="dataType"]:checked')).map(el => el.value);
+
+        if (selected.length === 0) {
+          alert('Please select at least one data category to delete.');
+          return;
+        }
+
+        subject = encodeURIComponent(`[SPECIFIC DATA DELETION REQUEST] Merit App - ${email}`);
+        body = encodeURIComponent(
+`MERIT APP - SPECIFIC DATA DELETION REQUEST
+
+Application: Merit (Time Bank)
+Package Name: com.merit.addictions
+Request Date: ${new Date().toISOString()}
+
+User Account Email: ${email}
+Keep Account Active: YES
+
+Categories of Data Requested for Purge:
+${selected.map(s => '- ' + s).join('\n')}
+
+Specific Instructions:
+${notes || 'Please delete the selected categories while keeping my account active.'}
+
+I request confirmation once the selected data categories have been purged from Firestore.`
+        );
+      }
+
+      // Launch email client
+      window.location.href = `mailto:ngenzsupport@gmail.com?subject=${subject}&body=${body}`;
+      showToast('Opening your email client to send verified request...');
+    }
+
+    function copyTemplate(type) {
+      let text = '';
+      if (type === 'full') {
+        text = `To: ngenzsupport@gmail.com
+Subject: [ACCOUNT DELETION REQUEST] Merit App (com.merit.addictions)
+
+Hello Merit Support Team,
+
+Please delete my entire account and all associated data stored for the Merit application (com.merit.addictions).
+
+Account Email: [ENTER YOUR GOOGLE/ACCOUNT EMAIL HERE]
+User Name: [ENTER YOUR USERNAME HERE]
+
+Please purge my Firebase Authentication account and all Cloud Firestore user documents.
+
+Thank you.`;
+      } else {
+        text = `To: ngenzsupport@gmail.com
+Subject: [SPECIFIC DATA DELETION REQUEST] Merit App (com.merit.addictions)
+
+Hello Merit Support Team,
+
+I would like to keep my account active, but please delete the following specific data from your cloud servers:
+- Workout & Calisthenics Logs
+- App Usage Logs & Screen Time Data
+- Smartwatch Step Records
+
+Account Email: [ENTER YOUR GOOGLE/ACCOUNT EMAIL HERE]
+
+Thank you.`;
+      }
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Template copied to clipboard!');
+      }).catch(() => {
+        showToast('Unable to auto-copy, please copy manually.');
+      });
+    }
+  </script>
+</body>
+</html>
